@@ -1,3 +1,3 @@
 # CompInvestCourseWork
 
-## (courseWork_1)[courseWork1.py]
+## [courseWork_1](courseWork1.py)
