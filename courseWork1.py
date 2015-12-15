@@ -60,7 +60,7 @@ def simulate(start_date, end_date, symbols_list, allocation_list):
         return (cumret(t-1, lf_returns) * (1 + lf_returns[t]))
 
     cum_ret = cumret(total_daily_ret.size - 1, total_daily_ret)
-
+    '''
     print 'Start date: ', start_date
     print 'End dare: ', end_date
     print 'Symbols: ', symbols_list
@@ -69,6 +69,7 @@ def simulate(start_date, end_date, symbols_list, allocation_list):
     print 'Volatility (stdev of daily returns): ', vol
     print 'Average Daily Return: ', mean
     print 'Cumulative Return: ', cum_ret
+    '''
 
     return vol, total_daily_ret, sharpe, cum_ret
 
@@ -76,7 +77,7 @@ def simulate(start_date, end_date, symbols_list, allocation_list):
 if __name__ == "__main__":
     # Test function
     # inputs:
-    '''
+
     start_date = dt.datetime(2010, 1, 1)
     end_date = dt.datetime(2010, 12, 31)
     symbols_list = ['AXP', 'HPQ', 'IBM', 'HNZ']
@@ -86,6 +87,24 @@ if __name__ == "__main__":
     end_date = dt.datetime(2011, 12, 31)
     symbols_list = ['AAPL', 'GLD', 'GOOG', 'XOM']
     allocation_list = [0.4, 0.4, 0.0, 0.2]
-
+    '''
+    '''
     vol, daily_ret, sharpe, cum_ret = simulate(start_date, end_date,
                                                symbols_list, allocation_list)
+    '''
+    optiAllo = []
+    maxSharp = 0.0
+    for i in np.linspace(0.0, 1.0, 11):
+        for j in np.linspace(0.0, 1.0, 11):
+            for m in np.linspace(0.0, 1.0, 11):
+                for n in np.linspace(0.0, 1.0, 11):
+                    if i+j+m+n == 1:
+                        allocation_list = [i,j,m,n]
+                        vol, daily_ret, sharpe, cum_ret = simulate(start_date, end_date,
+                                               symbols_list, allocation_list)
+                        if sharpe > maxSharp:
+                            optiAllo = allocation_list
+                            maxSharp = sharpe
+
+    print 'Opt: ', optiAllo
+    print 'max sharp: ', maxSharp
