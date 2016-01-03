@@ -36,7 +36,7 @@ def simulate(start_date, end_date, symbols_list, allocation_list):
 
     total_daily_ret = 0
     for i in range(len(na_rets[0,:])):
-        total_daily_ret += na_rets[:, i] * allocation_list[i]
+        total_daily_ret += na_rets[:, i] * allocation_list[i]  #YOU COULD JSUT USE AN ARRAY HERE.
 
     # calculate standard deviation
     vol = np.std(total_daily_ret)
