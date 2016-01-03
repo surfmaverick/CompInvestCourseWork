@@ -37,6 +37,8 @@ def simulate(start_date, end_date, symbols_list, allocation_list):
     total_daily_ret = 0
     for i in range(len(na_rets[0,:])):
         total_daily_ret += na_rets[:, i] * allocation_list[i]
+        
+        # consider here using an array intead. You can just take the daily returns once calculated and multipy by the array of the allocations
 
     # calculate standard deviation
     vol = np.std(total_daily_ret)
